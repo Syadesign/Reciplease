@@ -18,10 +18,11 @@ class ResearchViewController: UIViewController {
     private static let kCellId = "IngredientsTableViewCell"
 
     // MARK: - Outlets
-    @IBOutlet weak var okButtonView: UIButton!
     @IBOutlet weak var ingredientsTextField: UITextField!
     
     @IBOutlet weak var ingredientsTableView: UITableView!
+    
+    @IBOutlet var ButtonsViews: [UIButton]!
     
     // MARK: - View life cycle
     override func viewDidLoad() {
@@ -40,9 +41,21 @@ class ResearchViewController: UIViewController {
         ingredientsTextField.text = ""
     }
     
+    @IBAction func dismissKeyboard(_ sender: Any) {
+        self.ingredientsTextField.resignFirstResponder()
+    }
+    
+    @IBAction func searchButton(_ sender: Any) {
+    }
+    
+    @IBAction func clearButton(_ sender: Any) {
+    }
+    
     // MARK: - Methods
     func setupButtonView() {
-        okButtonView.layer.cornerRadius = okButtonView.frame.height / 8
+        for i in ButtonsViews {
+            i.layer.cornerRadius = i.frame.height / 8
+        }
     }
     
     func setupTableView() {
