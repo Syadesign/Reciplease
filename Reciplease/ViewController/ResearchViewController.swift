@@ -27,6 +27,7 @@ class ResearchViewController: UIViewController {
     // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.isNavigationBarHidden = false
         setupButtonView()
         setupTableView()
         
@@ -49,6 +50,7 @@ class ResearchViewController: UIViewController {
     }
     
     @IBAction func clearButton(_ sender: Any) {
+        ingredientsArray.removeAll()
     }
     
     // MARK: - Methods

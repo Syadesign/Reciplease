@@ -16,11 +16,22 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupButtonView()
-        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.navigationController?.isNavigationBarHidden = true
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        tabBarController?.navigationController?.isNavigationBarHidden = false
     }
 
 
     //MARK: - Outlets
+
     @IBOutlet weak var beginButtonView: UIButton!
     
     
