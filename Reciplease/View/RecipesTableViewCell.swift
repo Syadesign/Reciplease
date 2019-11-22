@@ -21,6 +21,12 @@ class RecipesTableViewCell: UITableViewCell {
         setupRecipeImage()
     }
     
+//    var recipe: RecipeViewModel? = nil {
+//        didSet {
+//            self.recipeTitleLabel.text = recipe?.title
+//        }
+//    }
+    
     // MARK: - Outlets
     
     @IBOutlet weak var recipeImageView: UIImageView!

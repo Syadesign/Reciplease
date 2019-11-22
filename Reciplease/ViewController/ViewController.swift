@@ -10,8 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
     
-
-    //MARK: - View cycle
+    // MARK: - Outlets
+    
+    @IBOutlet weak var beginButtonView: UIButton!
+    
+    
+    // MARK: - View cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,22 +24,17 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tabBarController?.navigationController?.isNavigationBarHidden = true
+        navigationController?.isNavigationBarHidden = true
         
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        tabBarController?.navigationController?.isNavigationBarHidden = false
+        navigationController?.isNavigationBarHidden = false
     }
 
 
-    //MARK: - Outlets
-
-    @IBOutlet weak var beginButtonView: UIButton!
-    
-    
-    //MARK: - Methods
+    // MARK: - Methods
     
     func setupButtonView() {
         beginButtonView.layer.cornerRadius = beginButtonView.frame.height / 5

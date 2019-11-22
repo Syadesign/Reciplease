@@ -9,6 +9,7 @@
 import UIKit
 
 class ResearchViewController: UIViewController {
+    
     // MARK: - Variables
     var ingredientsArray: [String] = [] {
         didSet {
@@ -17,6 +18,13 @@ class ResearchViewController: UIViewController {
     }
     private static let kCellId = "IngredientsTableViewCell"
 
+    
+    var recipe: [Recipe] = []
+    
+    let recipeViewModel = RecipeViewModel()
+    
+    let segueIndentifier = "segueToRecipes"
+    
     // MARK: - Outlets
     @IBOutlet weak var ingredientsTextField: UITextField!
     
@@ -33,6 +41,13 @@ class ResearchViewController: UIViewController {
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == segueIndentifier {
+            let recipesViewController = segue.destination as! RecipesViewController
+            recipesViewController.recipeViewModel = self.recipeViewModel
+        }
+    }
+    
     // MARK: - Actions
     @IBAction func addIngredientsButton(_ sender: Any) {
         if let text = ingredientsTextField.text {
@@ -47,6 +62,18 @@ class ResearchViewController: UIViewController {
     }
     
     @IBAction func searchButton(_ sender: Any) {
+        recipeViewModel.getRecipes(ingredients: ingredientsArray) {
+            self.performSegue(withIdentifier: self.segueIndentifier, sender: self)
+        }
+//        RecipeService.shared.getRecipes(ingredientsArray) { (recipe) in
+//            DispatchQueue.main.async {
+//            if let recipe = recipe {
+//            print(recipe)
+//                self.recipe.append(recipe)
+//            }
+//        }
+//        }
+        
     }
     
     @IBAction func clearButton(_ sender: Any) {
@@ -66,13 +93,17 @@ class ResearchViewController: UIViewController {
         let nib = UINib(nibName: ResearchViewController.kCellId, bundle: nil)
         self.ingredientsTableView.register(nib, forCellReuseIdentifier: ResearchViewController.kCellId)
     }
-    
 
 }
 
 extension ResearchViewController : UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ingredientsArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

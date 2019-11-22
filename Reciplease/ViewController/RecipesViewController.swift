@@ -7,29 +7,22 @@
 //
 
 import UIKit
+import Alamofire
 
 class RecipesViewController: UIViewController {
     
+    // case search: self.tabBarController?.selectedIndex = 0
+    
     // MARK: - Variables
-    var recipesArray: [String] = ["Buddah Bowl", "Chicken curry", "Pasta soup"] {
-        didSet {
-            self.recipesTableView.reloadData()
-        }
-    }
     
-    var recipesImages: [UIImage] = [#imageLiteral(resourceName: "recipeExample"), #imageLiteral(resourceName: "recipeExample"), #imageLiteral(resourceName: "recipeExample")]{
-        didSet {
-            self.recipesTableView.reloadData()
-        }
-    }
     
-    var recipesTime: [String] = ["15 min", "20 min", "30 min"] {
-        didSet {
-            self.recipesTableView.reloadData()
-        }
-    }
-
+    let research = ResearchViewController()
+    
+    //    var recipe: RecipeViewModel?
+    
     private static let kCellId = "RecipesTableViewCell"
+    
+    weak var recipeViewModel: RecipeViewModel?
     
     // MARK: - View cycle
     
@@ -38,12 +31,11 @@ class RecipesViewController: UIViewController {
         setupTableView()
     }
     
-
+    
     @IBOutlet weak var recipesTableView: UITableView!
     
-
-    // MARK: - Methods
     
+    // MARK: - Methods
     
     func setupTableView() {
         self.recipesTableView.delegate = self
@@ -54,20 +46,26 @@ class RecipesViewController: UIViewController {
     
 }
 
-    extension RecipesViewController : UITableViewDelegate, UITableViewDataSource {
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return recipesArray.count
-        }
+extension RecipesViewController : UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return recipeViewModel?.recipesArray?.count ?? 0
+    }
+    
+    func  tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 110
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        func  tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return 110
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: RecipesViewController.kCellId, for: indexPath) as! RecipesTableViewCell
         
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: RecipesViewController.kCellId, for: indexPath) as! RecipesTableViewCell
-            cell.recipeTitleLabel.text = recipesArray[indexPath.row]
-            cell.timeRecipeLabel.text = recipesTime[indexPath.row]
-            cell.recipeImageView.image = recipesImages[indexPath.row]
-            return cell
+        if let recipe = recipeViewModel?.recipesArray {
+        cell.recipeTitleLabel.text = recipe[indexPath.row].label
+        if let image = recipe[indexPath.row].image {
+            // TODO download url image
+            cell.recipeImageView.image = UIImage(named: image)
         }
+        }
+        return cell
+    }
 }
