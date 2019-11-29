@@ -287,6 +287,7 @@
                     <navigationItem key="navigationItem" id="EnZ-75-zUX"/>
                     <connections>
                         <outlet property="recipesTableView" destination="VIz-qQ-oVq" id="rKM-dR-NOs"/>
+                        <segue destination="qr4-Dz-nQW" kind="show" identifier="SegueToDetails" id="kiX-fm-1f4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gFV-U4-zNp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -301,7 +302,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="80l-Gd-uxZ">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="80l-Gd-uxZ">
                                 <rect key="frame" x="25" y="44" width="325" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="VLv-tG-9Hz"/>
@@ -318,7 +319,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDN-To-Otm">
-                                <rect key="frame" x="25" y="718" width="325" height="30"/>
+                                <rect key="frame" x="25" y="669" width="325" height="30"/>
                                 <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="M2I-yN-a2o"/>
@@ -329,7 +330,7 @@
                                 </state>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3da-yL-PRT">
-                                <rect key="frame" x="25" y="294" width="325" height="414"/>
+                                <rect key="frame" x="25" y="294" width="325" height="365"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
@@ -352,6 +353,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ygL-V7-2gh"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Ij1-1b-QlQ"/>
+                    <connections>
+                        <outlet property="imageView" destination="80l-Gd-uxZ" id="cJQ-kN-OUg"/>
+                        <outlet property="ingredientsTableView" destination="3da-yL-PRT" id="8d9-V5-axE"/>
+                        <outlet property="titleLabel" destination="hpe-kh-LME" id="lAj-bc-7JU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="spu-mS-vrm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -22,7 +22,7 @@ class RecipeService {
     let apiKey = "f67d7bbab299754eeed0ae0c45329acf"
     let appId = "a76d7c56"
     let from = "0"
-    let to = "1"
+    let to = "8"
     let unit = "g"
     
     // MARK: - Methods

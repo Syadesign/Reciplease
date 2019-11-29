@@ -2,12 +2,13 @@
 //  RecipesViewController.swift
 //  Reciplease
 //
-//  Created by Michael Martinez on 08/11/2019.
+//  Created by Samahir Adi on 08/11/2019.
 //  Copyright © 2019 Samahir Adi. All rights reserved.
 //
 
 import UIKit
 import Alamofire
+import Kingfisher
 
 class RecipesViewController: UIViewController {
     
@@ -15,20 +16,31 @@ class RecipesViewController: UIViewController {
     
     // MARK: - Variables
     
-    
-    let research = ResearchViewController()
-    
-    //    var recipe: RecipeViewModel?
-    
     private static let kCellId = "RecipesTableViewCell"
     
     weak var recipeViewModel: RecipeViewModel?
+    
+    var detailsViewController = DetailsViewController()
+    
+    let segueIndentifier = "SegueToDetails"
     
     // MARK: - View cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == segueIndentifier {
+           let detailsViewController = segue.destination as! DetailsViewController
+            let selectedRow = recipesTableView.indexPathForSelectedRow!.row
+                
+                detailsViewController.recipe = recipeViewModel?.recipesArray?[selectedRow]
+                
+//                detailsViewController.recipeViewModel = self.recipeViewModel
+            
+        }
     }
     
     
@@ -60,12 +72,38 @@ extension RecipesViewController : UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: RecipesViewController.kCellId, for: indexPath) as! RecipesTableViewCell
         
         if let recipe = recipeViewModel?.recipesArray {
-        cell.recipeTitleLabel.text = recipe[indexPath.row].label
-        if let image = recipe[indexPath.row].image {
-            // TODO download url image
-            cell.recipeImageView.image = UIImage(named: image)
-        }
+            if let time = recipe[indexPath.row].totalTime{
+                if time == 0 {
+                    cell.timeRecipeLabel.text = "Not available"
+                } else {
+                    cell.timeRecipeLabel.text = String(describing: time) + " min"
+                }
+                
+            }
+            cell.recipeTitleLabel.text = recipe[indexPath.row].label
+            if let imageUrlString = recipe[indexPath.row].image,
+                let imageUrl = URL(string: imageUrlString) {
+                cell.recipeImageView.kf.setImage(with: imageUrl)
+            }
         }
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        detailsViewController?.recipeViewModel = self.recipeViewModel
+        
+//        if let recipe = recipeViewModel?.recipesArray {
+//            detailsViewController.titleLabel.text = recipe[indexPath.row].label
+//            if let imageUrlString = recipe[indexPath.row].image,
+//                let imageUrl = URL(string: imageUrlString) {
+//                detailsViewController.imageView.kf.setImage(with: imageUrl)
+//            }
+            
+            self.performSegue(withIdentifier: segueIndentifier, sender: self)
+//            navigationController?.pushViewController(detailsViewController!, animated: true)
+           
+//        }
+    }
+    
+
 }

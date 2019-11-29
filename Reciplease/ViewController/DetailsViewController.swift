@@ -7,24 +7,37 @@
 //
 
 import UIKit
+import Kingfisher
 
 class DetailsViewController: UIViewController {
-
+    
+    weak var recipeViewModel: RecipeViewModel?
+    
+    // - MARK: Outlets
+    
+    @IBOutlet weak var imageView: UIImageView!
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    @IBOutlet weak var ingredientsTableView: UITableView!
+    
+    var selectedRow: Int?
+    
+    var recipe: Recipe?
+    
+    // - MARK: View Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let recipe = recipe {
+        self.titleLabel.text = recipe.label
+        if let imageUrlString = recipe.image,
+            let imageUrl = URL(string: imageUrlString) {
+            self.imageView.kf.setImage(with: imageUrl)
+        }
+        }
 
-        // Do any additional setup after loading the view.
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
