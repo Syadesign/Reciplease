@@ -38,7 +38,6 @@ class RecipesViewController: UIViewController {
                 
                 detailsViewController.recipe = recipeViewModel?.recipesArray?[selectedRow]
                 
-//                detailsViewController.recipeViewModel = self.recipeViewModel
             
         }
     }
@@ -90,19 +89,9 @@ extension RecipesViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        detailsViewController?.recipeViewModel = self.recipeViewModel
-        
-//        if let recipe = recipeViewModel?.recipesArray {
-//            detailsViewController.titleLabel.text = recipe[indexPath.row].label
-//            if let imageUrlString = recipe[indexPath.row].image,
-//                let imageUrl = URL(string: imageUrlString) {
-//                detailsViewController.imageView.kf.setImage(with: imageUrl)
-//            }
-            
+
             self.performSegue(withIdentifier: segueIndentifier, sender: self)
-//            navigationController?.pushViewController(detailsViewController!, animated: true)
-           
-//        }
+
     }
     
 

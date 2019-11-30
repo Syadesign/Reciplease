@@ -328,6 +328,9 @@
                                 <state key="normal" title="Get directions">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="getDirections:" destination="qr4-Dz-nQW" eventType="touchUpInside" id="uG4-C8-uwi"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3da-yL-PRT">
                                 <rect key="frame" x="25" y="294" width="325" height="365"/>
@@ -355,6 +358,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Ij1-1b-QlQ"/>
                     <connections>
+                        <outlet property="getDirectionButtonView" destination="cDN-To-Otm" id="Pg2-8m-GgF"/>
                         <outlet property="imageView" destination="80l-Gd-uxZ" id="cJQ-kN-OUg"/>
                         <outlet property="ingredientsTableView" destination="3da-yL-PRT" id="8d9-V5-axE"/>
                         <outlet property="titleLabel" destination="hpe-kh-LME" id="lAj-bc-7JU"/>

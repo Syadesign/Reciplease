@@ -25,8 +25,8 @@
                             <constraint firstAttribute="width" secondItem="lpw-4c-d9b" secondAttribute="height" multiplier="1:1" id="Zbi-i2-wdB"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Potatoes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1uK-wx-31M">
-                        <rect key="frame" x="24" y="10.5" width="296" height="23"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Potatoes" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1uK-wx-31M">
+                        <rect key="frame" x="24" y="11" width="296" height="22.5"/>
                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
