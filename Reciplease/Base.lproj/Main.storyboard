@@ -120,6 +120,14 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.39404163310000001" green="0.5697722435" blue="0.45345207609999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.73992631373350859" green="0.975422203540802" blue="0.88068291127761267" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="unselectedItemTintColor">
+                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
                         <segue destination="C1D-QA-yPk" kind="relationship" relationship="viewControllers" id="JTb-ir-WOd"/>
@@ -303,26 +311,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="80l-Gd-uxZ">
-                                <rect key="frame" x="25" y="44" width="325" height="200"/>
+                                <rect key="frame" x="25" y="69" width="100" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="VLv-tG-9Hz"/>
+                                    <constraint firstAttribute="height" constant="100" id="CfM-NI-asI"/>
+                                    <constraint firstAttribute="width" constant="100" id="Ioa-BN-C6u"/>
+                                    <constraint firstAttribute="width" secondItem="80l-Gd-uxZ" secondAttribute="height" id="V7j-fe-ahG"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pizza" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hpe-kh-LME">
-                                <rect key="frame" x="25" y="254" width="325" height="30"/>
-                                <color key="backgroundColor" red="0.39404163310000001" green="0.5697722435" blue="0.45345207609999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="h3Z-Tw-hOq"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDN-To-Otm">
-                                <rect key="frame" x="25" y="669" width="325" height="30"/>
+                                <rect key="frame" x="25" y="669" width="325" height="45"/>
                                 <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="M2I-yN-a2o"/>
+                                    <constraint firstAttribute="height" constant="45" id="M2I-yN-a2o"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                 <state key="normal" title="Get directions">
@@ -333,26 +333,34 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3da-yL-PRT">
-                                <rect key="frame" x="25" y="294" width="325" height="365"/>
+                                <rect key="frame" x="25" y="194" width="325" height="450"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pizza" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hpe-kh-LME">
+                                <rect key="frame" x="140" y="69" width="210" height="100"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                <color key="textColor" red="0.39404163310000001" green="0.5697722435" blue="0.45345207609999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="ygL-V7-2gh" firstAttribute="bottom" secondItem="3da-yL-PRT" secondAttribute="bottom" constant="85" id="4Og-3Q-nvn"/>
+                            <constraint firstItem="hpe-kh-LME" firstAttribute="height" secondItem="80l-Gd-uxZ" secondAttribute="height" id="99f-Ol-ran"/>
+                            <constraint firstItem="3da-yL-PRT" firstAttribute="leading" secondItem="ygL-V7-2gh" secondAttribute="leading" constant="25" id="A4T-11-QEJ"/>
+                            <constraint firstItem="ygL-V7-2gh" firstAttribute="trailing" secondItem="3da-yL-PRT" secondAttribute="trailing" constant="25" id="Bs2-oN-RqF"/>
                             <constraint firstItem="cDN-To-Otm" firstAttribute="centerX" secondItem="EOn-Yx-QdE" secondAttribute="centerX" id="Eb0-np-2qz"/>
-                            <constraint firstItem="80l-Gd-uxZ" firstAttribute="top" secondItem="ygL-V7-2gh" secondAttribute="top" id="Ebd-It-xY0"/>
-                            <constraint firstItem="cDN-To-Otm" firstAttribute="top" secondItem="3da-yL-PRT" secondAttribute="bottom" constant="10" id="Hwa-b6-ruH"/>
+                            <constraint firstItem="80l-Gd-uxZ" firstAttribute="top" secondItem="ygL-V7-2gh" secondAttribute="top" constant="25" id="Ebd-It-xY0"/>
+                            <constraint firstItem="hpe-kh-LME" firstAttribute="leading" secondItem="80l-Gd-uxZ" secondAttribute="trailing" constant="15" id="IqG-Is-SR4"/>
                             <constraint firstItem="3da-yL-PRT" firstAttribute="centerX" secondItem="EOn-Yx-QdE" secondAttribute="centerX" id="JG1-WJ-zp2"/>
-                            <constraint firstItem="3da-yL-PRT" firstAttribute="top" secondItem="hpe-kh-LME" secondAttribute="bottom" constant="10" id="JeQ-O1-s8M"/>
-                            <constraint firstItem="ygL-V7-2gh" firstAttribute="trailing" secondItem="80l-Gd-uxZ" secondAttribute="trailing" constant="25" id="RiH-nL-om7"/>
+                            <constraint firstItem="cDN-To-Otm" firstAttribute="bottom" secondItem="ygL-V7-2gh" secondAttribute="bottom" constant="-15" id="ZNm-dJ-o7W"/>
                             <constraint firstItem="80l-Gd-uxZ" firstAttribute="leading" secondItem="ygL-V7-2gh" secondAttribute="leading" constant="25" id="Zf9-hL-gCk"/>
-                            <constraint firstItem="hpe-kh-LME" firstAttribute="width" secondItem="80l-Gd-uxZ" secondAttribute="width" id="bnp-vz-pb1"/>
-                            <constraint firstItem="hpe-kh-LME" firstAttribute="centerX" secondItem="EOn-Yx-QdE" secondAttribute="centerX" id="dqq-hc-O2w"/>
+                            <constraint firstItem="ygL-V7-2gh" firstAttribute="trailing" secondItem="hpe-kh-LME" secondAttribute="trailing" constant="25" id="ddi-lf-dRt"/>
                             <constraint firstItem="cDN-To-Otm" firstAttribute="width" secondItem="3da-yL-PRT" secondAttribute="width" id="kCR-MB-EYT"/>
-                            <constraint firstItem="3da-yL-PRT" firstAttribute="width" secondItem="80l-Gd-uxZ" secondAttribute="width" id="kEn-yX-Ibx"/>
-                            <constraint firstItem="ygL-V7-2gh" firstAttribute="bottom" secondItem="3da-yL-PRT" secondAttribute="bottom" constant="70" id="uaL-Bi-Eag"/>
-                            <constraint firstItem="hpe-kh-LME" firstAttribute="top" secondItem="80l-Gd-uxZ" secondAttribute="bottom" constant="10" id="xaF-7O-IPw"/>
-                            <constraint firstItem="80l-Gd-uxZ" firstAttribute="centerX" secondItem="EOn-Yx-QdE" secondAttribute="centerX" id="zZR-Lv-p7T"/>
+                            <constraint firstItem="cDN-To-Otm" firstAttribute="top" secondItem="3da-yL-PRT" secondAttribute="bottom" constant="25" id="lCo-Vy-q8u"/>
+                            <constraint firstItem="hpe-kh-LME" firstAttribute="top" secondItem="80l-Gd-uxZ" secondAttribute="top" id="tUg-fR-7fB"/>
+                            <constraint firstItem="3da-yL-PRT" firstAttribute="top" secondItem="80l-Gd-uxZ" secondAttribute="bottom" constant="25" id="vpH-dX-JEt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ygL-V7-2gh"/>
                     </view>
@@ -368,11 +376,11 @@
             </objects>
             <point key="canvasLocation" x="3117.5999999999999" y="115.27093596059113"/>
         </scene>
-        <!--Favorites-->
+        <!--Navigation Controller-->
         <scene sceneID="AEB-eP-67o">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="joG-to-RW9" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Favorites" id="NAW-eG-OKo"/>
+                    <tabBarItem key="tabBarItem" title="" image="favorite" selectedImage="favorite" id="NAW-eG-OKo"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bJc-FE-jgg">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -387,11 +395,13 @@
             </objects>
             <point key="canvasLocation" x="53.600000000000001" y="854.92610837438428"/>
         </scene>
-        <!--Search-->
+        <!--Navigation Controller-->
         <scene sceneID="gql-Dw-4xv">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="C1D-QA-yPk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Search" id="EJi-a8-Yxc"/>
+                    <tabBarItem key="tabBarItem" title="" image="search" id="EJi-a8-Yxc">
+                        <color key="badgeColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EnX-h7-Bnw">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -408,8 +418,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="favorite" width="24" height="24"/>
         <image name="ingredients" width="700" height="477"/>
         <image name="logo" width="512" height="512"/>
         <image name="onions" width="2048" height="2048"/>
+        <image name="search" width="24" height="24"/>
     </resources>
 </document>
