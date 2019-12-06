@@ -7,10 +7,12 @@
 //
 
 import Foundation
+import CoreData
 
 
 class RecipeViewModel {
-    
+  
+    static var shared = RecipeViewModel()
     
     var recipesArray: [Recipe]?
     

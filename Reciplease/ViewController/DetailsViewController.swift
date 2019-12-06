@@ -8,10 +8,15 @@
 
 import UIKit
 import Kingfisher
+import CoreData
 
 class DetailsViewController: UIViewController {
     
     weak var recipeViewModel: RecipeViewModel?
+    
+    var favoritesArray: [Recipe]?
+    
+    
     
     // - MARK: Outlets
     
@@ -24,6 +29,8 @@ class DetailsViewController: UIViewController {
     
     @IBOutlet weak var getDirectionButtonView: UIButton!
     
+    @IBOutlet weak var favoritesButtonView: UIButton!
+    
     // - MARK: Actions
     
     @IBAction func getDirections(_ sender: Any) {
@@ -32,6 +39,14 @@ class DetailsViewController: UIViewController {
             UIApplication.shared.open(url)
         }
     }
+    
+    @IBAction func AddToFavorites(_ sender: Any) {
+        guard let recipe = recipe else {return}
+        Favorite.addFavorite(recipe: recipe)
+//        saveRecipe(favorite: recipe)
+        print ("=== Add To Favorites === ")
+    }
+    
     
     // - MARK: Variables
     
@@ -51,7 +66,13 @@ class DetailsViewController: UIViewController {
     }
     
     
+    // - MARK: Methods
     
+    private func saveRecipe(favorite: Recipe) {
+//        let recipeContext = RecipeViewModel(context: AppDelegate.viewContext)
+//        self.recipeContext.favoritesRecipes.append(favorite)
+//        try? AppDelegate.viewContext.save()
+    }
     
     private func setupTableView() {
         self.ingredientsTableView.delegate = self

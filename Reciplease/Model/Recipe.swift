@@ -1,9 +1,7 @@
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
-//
-//   let recipe = try? newJSONDecoder().decode(Recipe.self, from: jsonData)
 
 import Foundation
+import CoreData
+
 
 // MARK: - RecipeResult
 struct RecipeResult: Decodable {
@@ -36,19 +34,6 @@ struct Recipe: Decodable {
     let totalTime: Int?
 }
 
-
-
-enum SchemaOrgTag {
-    case carbohydrateContent
-    case cholesterolContent
-    case fatContent
-    case fiberContent
-    case proteinContent
-    case saturatedFatContent
-    case sodiumContent
-    case sugarContent
-    case transFatContent
-}
 
 enum Unit {
     case empty

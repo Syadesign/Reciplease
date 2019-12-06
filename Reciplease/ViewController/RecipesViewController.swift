@@ -12,8 +12,6 @@ import Kingfisher
 
 class RecipesViewController: UIViewController {
     
-    // case search: self.tabBarController?.selectedIndex = 0
-    
     // MARK: - Variables
     
     private static let kCellId = "RecipesTableViewCell"

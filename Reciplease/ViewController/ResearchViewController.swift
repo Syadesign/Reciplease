@@ -65,14 +65,6 @@ class ResearchViewController: UIViewController {
         recipeViewModel.getRecipes(ingredients: ingredientsArray) {
             self.performSegue(withIdentifier: self.segueIndentifier, sender: self)
         }
-//        RecipeService.shared.getRecipes(ingredientsArray) { (recipe) in
-//            DispatchQueue.main.async {
-//            if let recipe = recipe {
-//            print(recipe)
-//                self.recipe.append(recipe)
-//            }
-//        }
-//        }
         
     }
     

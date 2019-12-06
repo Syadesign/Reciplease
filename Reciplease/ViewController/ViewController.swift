@@ -31,14 +31,18 @@ class ViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         navigationController?.isNavigationBarHidden = false
+        
     }
 
+   
 
     // MARK: - Methods
     
     func setupButtonView() {
         beginButtonView.layer.cornerRadius = beginButtonView.frame.height / 5
+        
     }
+    
 }
 
 
