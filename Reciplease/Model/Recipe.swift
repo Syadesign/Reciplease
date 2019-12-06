@@ -45,7 +45,6 @@ enum Unit {
 }
 
 
-
 // MARK: - Ingredient
 struct Ingredient: Decodable {
     let text: String?

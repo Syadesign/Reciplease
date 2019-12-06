@@ -11,9 +11,15 @@ import CoreData
 
 class Favorite: NSManagedObject {
     
+    var ingredientsArray: [Ingredient] = []
+    
     static func addFavorite(recipe: Recipe){
         let favorite = Favorite(context: AppDelegate.viewContext)
         favorite.recipeTitle = recipe.label
+        favorite.image = recipe.image
+        if let ingredients = recipe.ingredients {
+        favorite.ingredientsArray = ingredients
+        }
         try? AppDelegate.viewContext.save()
     }
     

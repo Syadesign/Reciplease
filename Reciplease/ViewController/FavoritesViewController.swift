@@ -18,12 +18,12 @@ class FavoritesViewController: UIViewController {
     weak var recipeViewModel: RecipeViewModel?
     
     
-//            let request = NSFetchRequest<RecipeViewModel>(entityName: "RecipeViewModel")
-//            guard let recipe = try? AppDelegate.viewContext.fetch(request) else {return}
-//            for i in recipe {
-//                self.favorites = i.favoritesRecipes
-//            }
-
+    //            let request = NSFetchRequest<RecipeViewModel>(entityName: "RecipeViewModel")
+    //            guard let recipe = try? AppDelegate.viewContext.fetch(request) else {return}
+    //            for i in recipe {
+    //                self.favorites = i.favoritesRecipes
+    //            }
+    
     var detailsViewController = DetailsViewController()
     
     let segueIndentifier = "SegueToFavoritesDetails"
@@ -34,7 +34,7 @@ class FavoritesViewController: UIViewController {
     
     @IBOutlet weak var favoritesTableView: UITableView!
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -46,25 +46,25 @@ class FavoritesViewController: UIViewController {
         self.favoritesTableView.reloadData()
     }
     
-
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-           if segue.identifier == segueIndentifier {
-              let detailsViewController = segue.destination as! DetailsViewController
-               let selectedRow = favoritesTableView.indexPathForSelectedRow!.row
-                   
-                   detailsViewController.recipe = recipeViewModel?.recipesArray?[selectedRow]
+        if segue.identifier == segueIndentifier {
+            let detailsViewController = segue.destination as! DetailsViewController
+            let selectedRow = favoritesTableView.indexPathForSelectedRow!.row
+            if let favorites = favorites {
+            detailsViewController.favorites = favorites[selectedRow]
+            }
             
-               
-           }
+        }
     }
-        
-        func setupTableView() {
-               self.favoritesTableView.delegate = self
-               self.favoritesTableView.dataSource = self
-               let nib = UINib(nibName: FavoritesViewController.kCellId, bundle: nil)
-               self.favoritesTableView.register(nib, forCellReuseIdentifier: FavoritesViewController.kCellId)
-           }
+    
+    func setupTableView() {
+        self.favoritesTableView.delegate = self
+        self.favoritesTableView.dataSource = self
+        let nib = UINib(nibName: FavoritesViewController.kCellId, bundle: nil)
+        self.favoritesTableView.register(nib, forCellReuseIdentifier: FavoritesViewController.kCellId)
+    }
     
 }
 
@@ -83,35 +83,33 @@ extension FavoritesViewController : UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: FavoritesViewController.kCellId, for: indexPath) as! RecipesTableViewCell
         
         if let favorites = favorites {
-        cell.recipeTitleLabel.text = favorites[indexPath.row].recipeTitle
+            // Title
+            cell.recipeTitleLabel.text = favorites[indexPath.row].recipeTitle
+            // Time
+            let totalTime = favorites[indexPath.row].totalTime
+            if totalTime == 0 {
+                cell.timeRecipeLabel.text = "Not available"
+            } else {
+                cell.timeRecipeLabel.text = String(describing: totalTime) + " min"
+            }
+            // Image
+            if let imageUrlString = favorites[indexPath.row].image,
+                let imageUrl = URL(string: imageUrlString) {
+                cell.recipeImageView.kf.setImage(with: imageUrl)
+            }
+            
         }
-//        if let recipe = recipeViewModel?.recipesArray {
-//            if let time = recipe[indexPath.row].totalTime{
-//                if time == 0 {
-//                    cell.timeRecipeLabel.text = "Not available"
-//                } else {
-//                    cell.timeRecipeLabel.text = String(describing: time) + " min"
-//                }
-//
-//            } else {
-//                cell.timeRecipeLabel.text = "Not available"
-//            }
-//            cell.recipeTitleLabel.text = recipe[indexPath.row].label
-//            if let imageUrlString = recipe[indexPath.row].image,
-//                let imageUrl = URL(string: imageUrlString) {
-//                cell.recipeImageView.kf.setImage(with: imageUrl)
-//            }
-//        }
+     
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-            self.performSegue(withIdentifier: segueIndentifier, sender: self)
-
+        
+        self.performSegue(withIdentifier: segueIndentifier, sender: self)
+        
     }
     
-
+    
 }
 
 extension FavoritesViewController: UITabBarDelegate {

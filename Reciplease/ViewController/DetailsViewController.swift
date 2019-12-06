@@ -43,7 +43,6 @@ class DetailsViewController: UIViewController {
     @IBAction func AddToFavorites(_ sender: Any) {
         guard let recipe = recipe else {return}
         Favorite.addFavorite(recipe: recipe)
-//        saveRecipe(favorite: recipe)
         print ("=== Add To Favorites === ")
     }
     
@@ -53,6 +52,8 @@ class DetailsViewController: UIViewController {
     var selectedRow: Int?
     
     var recipe: Recipe?
+    
+    var favorites: Favorite?
     
     private static let kCellId = "IngredientsTableViewCell"
     
@@ -93,6 +94,12 @@ class DetailsViewController: UIViewController {
                 let imageUrl = URL(string: imageUrlString) {
                 self.imageView.kf.setImage(with: imageUrl)
             }
+        } else if let favorites = favorites {
+            self.titleLabel.text = favorites.recipeTitle?.uppercased()
+                      if let imageUrlString = favorites.image,
+                          let imageUrl = URL(string: imageUrlString) {
+                          self.imageView.kf.setImage(with: imageUrl)
+                      }
         }
     }
     
@@ -100,9 +107,13 @@ class DetailsViewController: UIViewController {
 
 extension DetailsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let recipe = recipe else {return 0}
-        guard let ingredients = recipe.ingredients else {return 0}
-        return ingredients.count
+        var rows: Int = 0
+        if let recipe = recipe {
+            rows = recipe.ingredients?.count ?? 0
+        } else if let favorites = favorites {
+            rows = favorites.ingredientsArray.count
+        }
+        return rows
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -115,6 +126,8 @@ extension DetailsViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: DetailsViewController.kCellId, for: indexPath) as! IngredientsTableViewCell
         if let recipe = recipe {
             cell.ingredientLabel.text = recipe.ingredients?[indexPath.row].text
+        } else if let favorites = favorites {
+            cell.ingredientLabel.text = favorites.ingredientsArray[indexPath.row].text
         }
         return cell
     }
