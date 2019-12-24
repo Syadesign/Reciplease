@@ -11,14 +11,17 @@ import CoreData
 
 class Favorite: NSManagedObject {
     
-    var ingredientsArray: [Ingredient] = []
+    var ingredientsArray: [String] {
+        return self.ingredients?.components(separatedBy: ",") ?? []
+    }
     
     static func addFavorite(recipe: Recipe){
         let favorite = Favorite(context: AppDelegate.viewContext)
         favorite.recipeTitle = recipe.label
         favorite.image = recipe.image
-        if let ingredients = recipe.ingredients {
-        favorite.ingredientsArray = ingredients
+        favorite.totalTime = Double(recipe.totalTime ?? 0)
+        if let ingredients = recipe.ingredientLines {
+        favorite.ingredients = ingredients.joined(separator: ",")
         }
         try? AppDelegate.viewContext.save()
     }

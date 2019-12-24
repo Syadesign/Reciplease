@@ -28,7 +28,7 @@ struct Recipe: Decodable {
     let shareAs: String?
     let yield: Int?
     let dietLabels: [String]?
-    let cautions, ingredientLines: [String]?
+    let cautions,ingredientLines : [String]?
     let ingredients: [Ingredient]?
     let calories, totalWeight: Double?
     let totalTime: Int?

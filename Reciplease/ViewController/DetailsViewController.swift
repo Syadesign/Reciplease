@@ -127,7 +127,7 @@ extension DetailsViewController: UITableViewDelegate, UITableViewDataSource {
         if let recipe = recipe {
             cell.ingredientLabel.text = recipe.ingredients?[indexPath.row].text
         } else if let favorites = favorites {
-            cell.ingredientLabel.text = favorites.ingredientsArray[indexPath.row].text
+            cell.ingredientLabel.text = favorites.ingredientsArray[indexPath.row]
         }
         return cell
     }

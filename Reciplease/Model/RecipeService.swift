@@ -40,7 +40,7 @@ class RecipeService {
         
         guard let url = apiUrl else {return}
         
-        AF.request(url,
+        Alamofire.request(url,
                    method: .get,
                    parameters: parameters).responseData { (data) in
                     switch data.result {
